@@ -29,7 +29,7 @@ class App extends React.Component {
     this.state = {
       todos: data,
       todoName: "",
-      value: ''
+      searchValue: ''
     }
   }
 
@@ -91,7 +91,7 @@ class App extends React.Component {
   handleSearchChange = (e) => {
     console.log(e.target.value)
     this.setState({
-      value: e.target.value,
+      searchValue: e.target.value,
     });
     
   }
@@ -99,8 +99,8 @@ class App extends React.Component {
 
   handleSearchSubmit = e => {
     e.preventDefault();
-    const { value } = this.state;
-    const filteredSearch = this.state.todos.filter(todo => todo.task.toLowerCase().includes(value.toLowerCase()))
+    // const { searchValue } = this.state;
+    const filteredSearch = this.state.todos.filter(todo => todo.task.toLowerCase().includes(this.state.searchValue.toLowerCase()))
     if(filteredSearch.length === 0) {
       alert("none")
       e.target.reset();

@@ -19,7 +19,7 @@ const TodoForm = props => {
                         onChange={props.handleSearchChange}
                         type="text"
                         name="search"
-                        value={props.value}
+                        value={props.searchValue}
                     />
                     <button>Search</button>
                 </form>
