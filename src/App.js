@@ -27,7 +27,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: data
+      todos: data,
+      todoName: "",
+      value: ''
     }
   }
 
@@ -48,6 +50,7 @@ class App extends React.Component {
   }
 
   clearTodos = () => {
+    console.log("clearPurchased");
     this.setState({
       todos: this.state.todos.filter(todo => {
         return !todo.completed
@@ -68,6 +71,52 @@ class App extends React.Component {
     })
   };
 
+  handleChanges = e => {
+    this.setState({
+        todoName: e.target.value
+    })
+    console.log(e.target.value)
+  }
+
+
+  
+  handleSubmit = e => {
+      e.preventDefault();
+      if (this.state.todoName !== "") {
+          this.addTodo(this.state.todoName);
+          e.target.reset();
+      }
+  }
+
+  handleSearchChange = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      value: e.target.value,
+    });
+    
+  }
+  
+
+  handleSearchSubmit = e => {
+    e.preventDefault();
+    const { value } = this.state;
+    const filteredSearch = this.state.todos.filter(todo => todo.task.toLowerCase().includes(value.toLowerCase()))
+    if(filteredSearch.length === 0) {
+      alert("none")
+      e.target.reset();
+    } else {
+      this.setState({
+        todos: [...filteredSearch]
+      })
+      e.target.reset(); 
+    }
+  }
+
+  
+
+
+
+
   render() {
     return (
       <div>
@@ -79,7 +128,13 @@ class App extends React.Component {
           clearTodos={this.clearTodos}
           toggleCompleted={this.toggleCompleted}
         />
-        <TodoForm addTodo={this.addTodo}/>
+        <TodoForm 
+          addTodo={this.addTodo}
+          handleSubmit={this.handleSubmit}
+          handleChanges={this.handleChanges}
+          handleSearchChange={this.handleSearchChange}
+          handleSearchSubmit={this.handleSearchSubmit}
+        />
 
       </div>
       
