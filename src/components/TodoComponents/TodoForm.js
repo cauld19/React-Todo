@@ -23,7 +23,7 @@ const TodoForm = props => {
                     />
                     <button>Search</button>
                 </form>
-                {/* <button onClick={() => props.resetSearch()}>Reset</button> */}
+                <button onClick={() => props.resetSearch()}>Reset</button>
             </div>
                 
         )

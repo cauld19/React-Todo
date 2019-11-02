@@ -10,7 +10,6 @@ const TodoList = props => {
     
         return (
           <div className="todo-outer-div">
-            
               {props.todos.map(todo =>(
                   <Todo 
                     key={todo.id}

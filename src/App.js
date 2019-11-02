@@ -28,10 +28,9 @@ class App extends React.Component {
     super();
     this.state = {
       todos: data,
-      // todosSearch: data,
+      permTodos: data,
       todoName: "",
-      searchValue: '',
-      // todoBoolean: false
+      searchValue: ''
     }
   }
 
@@ -69,6 +68,14 @@ class App extends React.Component {
           id: Date.now(),
           completed: false
         }
+      ],
+      permTodos: [
+        ...this.state.todos,
+        {
+          task: todoName,
+          id: Date.now(),
+          completed: false
+        }
       ]
     })
   };
@@ -81,13 +88,7 @@ class App extends React.Component {
   }
 
 
-  // resetSearch = e => {
-  //   this.setState({
-  //     todos: [...this.state.todos],
-  //     todoBoolean: false
-  //   })
-  //   console.log("reset search")
-  // }
+  
   
   handleSubmit = e => {
       e.preventDefault();
@@ -116,10 +117,16 @@ class App extends React.Component {
     } else {
       this.setState({
         todos: [...filteredSearch],
-        // todosSearch: [...filteredSearch],
       })
       e.target.reset(); 
     }
+  }
+
+  resetSearch = () => {
+    this.setState({
+      todos: this.state.permTodos
+    })
+    console.log("reset search")
   }
 
 
@@ -144,6 +151,7 @@ class App extends React.Component {
           handleChanges={this.handleChanges}
           handleSearchChange={this.handleSearchChange}
           handleSearchSubmit={this.handleSearchSubmit}
+          resetSearch={this.resetSearch}
         />
 
       </div>
