@@ -5,7 +5,7 @@ const TodoForm = props => {
 
         return (
             <div>
-                <form onSubmit={props.handleSubmit}>
+                <form className="todo-form" onSubmit={props.handleSubmit}>
                     <input 
                         onChange={props.handleChanges}
                         type="text"
@@ -14,7 +14,7 @@ const TodoForm = props => {
                     />
                     <button>Add Todo</button> 
                 </form>
-                <form onSubmit={props.handleSearchSubmit}>
+                <form className="todo-form" onSubmit={props.handleSearchSubmit}>
                     <input
                         onChange={props.handleSearchChange}
                         type="text"
@@ -23,6 +23,7 @@ const TodoForm = props => {
                     />
                     <button>Search</button>
                 </form>
+                {/* <button onClick={() => props.resetSearch()}>Reset</button> */}
             </div>
                 
         )

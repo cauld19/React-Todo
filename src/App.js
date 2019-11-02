@@ -28,8 +28,10 @@ class App extends React.Component {
     super();
     this.state = {
       todos: data,
+      // todosSearch: data,
       todoName: "",
-      searchValue: ''
+      searchValue: '',
+      // todoBoolean: false
     }
   }
 
@@ -79,6 +81,13 @@ class App extends React.Component {
   }
 
 
+  // resetSearch = e => {
+  //   this.setState({
+  //     todos: [...this.state.todos],
+  //     todoBoolean: false
+  //   })
+  //   console.log("reset search")
+  // }
   
   handleSubmit = e => {
       e.preventDefault();
@@ -106,13 +115,14 @@ class App extends React.Component {
       e.target.reset();
     } else {
       this.setState({
-        todos: [...filteredSearch]
+        todos: [...filteredSearch],
+        // todosSearch: [...filteredSearch],
       })
       e.target.reset(); 
     }
   }
 
-  
+
 
 
 
@@ -120,10 +130,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="todo-title">
           <h2>Welcome to your Todo App!</h2>
         </div>
-        <TodoList 
+        <TodoList
           todos={this.state.todos}
           clearTodos={this.clearTodos}
           toggleCompleted={this.toggleCompleted}
