@@ -85,11 +85,10 @@ class App extends React.Component {
     localStorage.setItem(`todo ${todoName}`, todoName)
   };
 
-  handleChanges = e => {
+  handleChange = e => {
     this.setState({
-        todoName: e.target.value
+        [e.target.name]: e.target.value
     })
-    console.log(e.target.value)
   }
 
 
@@ -103,13 +102,6 @@ class App extends React.Component {
       }
   }
 
-  handleSearchChange = (e) => {
-    console.log(e.target.value)
-    this.setState({
-      searchValue: e.target.value,
-    });
-    
-  }
   
 
   handleSearchSubmit = e => {
@@ -155,8 +147,7 @@ class App extends React.Component {
         <TodoForm 
           addTodo={this.addTodo}
           handleSubmit={this.handleSubmit}
-          handleChanges={this.handleChanges}
-          handleSearchChange={this.handleSearchChange}
+          handleChange={this.handleChange}
           handleSearchSubmit={this.handleSearchSubmit}
           resetSearch={this.resetSearch}
         />

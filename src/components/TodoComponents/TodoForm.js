@@ -7,18 +7,18 @@ const TodoForm = props => {
             <div>
                 <form className="todo-form" onSubmit={props.handleSubmit}>
                     <input 
-                        onChange={props.handleChanges}
+                        onChange={props.handleChange}
                         type="text"
-                        name="todo"
+                        name="todoName"
                         value={props.todoName}
                     />
                     <button>Add Todo</button> 
                 </form>
                 <form className="todo-form" onSubmit={props.handleSearchSubmit}>
                     <input
-                        onChange={props.handleSearchChange}
+                        onChange={props.handleChange}
                         type="text"
-                        name="search"
+                        name="searchValue"
                         value={props.searchValue}
                     />
                     <button>Search</button>
