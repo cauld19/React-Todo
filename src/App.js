@@ -51,12 +51,16 @@ class App extends React.Component {
   }
 
   clearTodos = () => {
-    console.log("clearPurchased");
+    console.log("clearPurchased", this.state.permTodos);
     this.setState({
       todos: this.state.todos.filter(todo => {
         return !todo.completed
+      }),
+      permTodos: this.state.permTodos.filter(todo => {
+        return !todo.completed
       })
     })
+    
   }
 
   addTodo = todoName => {
@@ -78,6 +82,7 @@ class App extends React.Component {
         }
       ]
     })
+    localStorage.setItem(`todo ${todoName}`, todoName)
   };
 
   handleChanges = e => {
@@ -109,8 +114,8 @@ class App extends React.Component {
 
   handleSearchSubmit = e => {
     e.preventDefault();
-    // const { searchValue } = this.state;
-    const filteredSearch = this.state.todos.filter(todo => todo.task.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+    const { searchValue } = this.state;
+    const filteredSearch = this.state.todos.filter(todo => todo.task.toLowerCase().includes(searchValue.toLowerCase()))
     if(filteredSearch.length === 0) {
       alert("none")
       e.target.reset();
@@ -118,8 +123,10 @@ class App extends React.Component {
       this.setState({
         todos: [...filteredSearch],
       })
-      e.target.reset(); 
+      e.target.reset();
+      localStorage.setItem(`search ${searchValue}`, searchValue) 
     }
+    
   }
 
   resetSearch = () => {
